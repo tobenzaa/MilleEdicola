@@ -1,499 +1,368 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mille Edicola | Edicola contemporanea tra stampa, eventi e comunicazione</title>
-  <meta name="description" content="Mille Edicola: giornali e magazine selezionati, incontri, presentazioni, mostre e attivazioni per brand. Via Ripamonti 2, Milano (Porta Romana)." />
 
-  <style>
-    :root{
-      --bg:#0b0f17;
-      --card:#111827;
-      --muted:#a3aab7;
-      --text:#e8ecf2;
-      --brand:#eab308;   /* giallo caldo */
-      --brand2:#60a5fa;  /* azzurro */
-      --line:rgba(255,255,255,.09);
-      --shadow: 0 18px 70px rgba(0,0,0,.48);
-      --radius: 18px;
-      --max: 1120px;
-      --pad: 22px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 520px at 70% -10%, rgba(234,179,8,.20), transparent 60%),
-        radial-gradient(800px 520px at 0% 10%, rgba(96,165,250,.14), transparent 55%),
-        var(--bg);
-      line-height:1.45;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding: 0 var(--pad);}
+<title>Mille Edicola</title>
 
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,23,.66);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:16px;
-    }
-    .logo{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; letter-spacing:.2px;
-      white-space:nowrap;
-    }
-    .mark{
-      width:34px; height:34px; border-radius:11px;
-      background: linear-gradient(135deg, rgba(234,179,8,.95), rgba(96,165,250,.85));
-      box-shadow: 0 14px 36px rgba(234,179,8,.14);
-    }
-    .navlinks{
-      display:flex; gap:14px; align-items:center;
-      font-size:14px; color:var(--muted);
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    .navlinks a{opacity:.9; text-decoration:none}
-    .navlinks a:hover{opacity:1; color:var(--text)}
+<style>
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:14px;
-      text-decoration:none;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      transition:.18s ease;
-      cursor:pointer;
-      font-weight:750;
-    }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.20)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(234,179,8,.96), rgba(234,179,8,.68));
-      border-color: rgba(234,179,8,.36);
-      color:#121212;
-    }
-    .btn.secondary{
-      background: rgba(96,165,250,.12);
-      border-color: rgba(96,165,250,.25);
-      color: var(--text);
-    }
+body{
+margin:0;
+font-family:Georgia, serif;
+background:#f5f2ee;
+color:#1a1a1a;
+}
 
-    .hero{padding:56px 0 24px;}
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.25fr .9fr;
-      gap: 22px;
-      align-items:stretch;
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .dot{width:8px; height:8px; border-radius:50%; background: var(--brand)}
-    h1{font-size:46px; line-height:1.03; margin:14px 0 12px;}
-    .sub{color:var(--muted); font-size:17px; max-width: 62ch;}
-    .cta-row{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;}
-    .trust{
-      margin-top:16px; display:flex; gap:18px; flex-wrap:wrap;
-      color:var(--muted); font-size:13px;
-    }
-    .trust b{color:var(--text); font-weight:850}
+.wrap{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
 
-    .card{
-      background: rgba(17,24,39,.78);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .box{padding:18px;}
-    .box h3, .box h4{margin:0 0 10px;}
-    .box p{margin:0; color:var(--muted); font-size:14px;}
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
 
-    .bullets{list-style:none; margin:0; padding:0; display:grid; gap:10px; color:var(--muted); font-size:14px;}
-    .bullets li{display:flex; gap:10px;}
-    .check{
-      width:20px;height:20px;border-radius:7px;
-      background: rgba(96,165,250,.14);
-      border:1px solid rgba(96,165,250,.22);
-      display:flex; align-items:center; justify-content:center;
-      color: var(--brand2);
-      flex:0 0 auto;
-      font-weight:900;
-    }
+section{
+padding:60px 0;
+border-bottom:1px solid #ddd;
+}
 
-    section{padding: 26px 0;}
-    .section-title{
-      display:flex; align-items:end; justify-content:space-between; gap:16px;
-      margin-bottom:14px;
-    }
-    .section-title h2{margin:0; font-size:22px;}
-    .section-title p{margin:0; color:var(--muted); font-size:14px; max-width: 80ch;}
-    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
-    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px;}
-    .divider{height:1px; background: var(--line); margin: 14px 0;}
+/* NAVBAR */
 
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
-      background: rgba(255,255,255,.03);
-    }
+.navbar{
+background:#000;
+color:#fff;
+position:sticky;
+top:0;
+z-index:100;
+}
 
-    form{display:grid; gap:10px;}
-    label{font-size:13px; color:var(--muted);}
-    input, textarea, select{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.22);
-      color: var(--text);
-      outline:none;
-    }
-    input:focus, textarea:focus, select:focus{border-color: rgba(234,179,8,.45);}
-    textarea{min-height:110px; resize:vertical;}
-    .form-row{display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
-    .note{font-size:12px; color:var(--muted);}
+.navbar .wrap{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 20px;
+}
 
-    .faq details{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px;
-      background: rgba(255,255,255,.03);
-    }
-    .faq details + details{margin-top:10px;}
-    .faq summary{cursor:pointer; font-weight:800;}
-    .faq p{color:var(--muted); margin:10px 0 0; font-size:14px;}
+.navbar a{
+color:white;
+margin-left:25px;
+font-family:sans-serif;
+font-size:14px;
+}
 
-    footer{padding:28px 0 40px; color:var(--muted);}
-    .footgrid{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;}
-    .small{font-size:12px;}
+/* HERO */
 
-    @media (max-width: 900px){
-      .hero-grid{grid-template-columns: 1fr;}
-      h1{font-size:36px;}
-      .grid3{grid-template-columns:1fr;}
-      .grid2{grid-template-columns:1fr;}
-      .navlinks{display:none;}
-      .form-row{grid-template-columns:1fr;}
-    }
-  </style>
+.hero-title{
+font-size:90px;
+line-height:0.9;
+margin-bottom:30px;
+}
+
+.hero-text{
+font-family:sans-serif;
+font-size:20px;
+line-height:1.6;
+}
+
+/* PROJECT */
+
+.title{
+font-size:32px;
+margin-bottom:20px;
+}
+
+.text{
+font-size:20px;
+line-height:1.6;
+}
+
+/* SLIDER */
+
+.slider{
+position:relative;
+overflow:hidden;
+}
+
+.slides{
+display:flex;
+transition:transform 0.4s ease;
+}
+
+.slide{
+min-width:100%;
+}
+
+.slide img{
+width:100%;
+height:350px;
+object-fit:cover;
+}
+
+.controls{
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+}
+
+button{
+background:none;
+border:1px solid #ccc;
+padding:8px 14px;
+cursor:pointer;
+}
+
+/* COLLABORAZIONI */
+
+ul{
+font-size:18px;
+line-height:2;
+}
+
+/* LOCATION */
+
+.map iframe{
+width:100%;
+height:260px;
+border:0;
+}
+
+/* FOOTER */
+
+.footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px;
+font-family:sans-serif;
+font-size:14px;
+}
+
+@media(max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.hero-title{
+font-size:60px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="nav">
-        <div class="logo" aria-label="Mille Edicola">
-          <div class="mark" aria-hidden="true"></div>
-          <div>Mille Edicola</div>
-        </div>
 
-        <nav class="navlinks" aria-label="Menu">
-          <a href="#concept">Concept</a>
-          <a href="#cosa-facciamo">Cosa facciamo</a>
-          <a href="#brand">Per i brand</a>
-          <a href="#location">Location</a>
-          <a href="#contatti">Contatti</a>
-        </nav>
+<!-- NAVBAR -->
 
-        <a class="btn primary" href="#contatti">Prenota / Collabora</a>
-      </div>
-    </div>
-  </header>
+<div class="navbar">
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <div class="kicker"><span class="dot"></span> Edicola contemporanea • stampa, eventi, comunicazione</div>
-            <h1>La carta stampata resta protagonista. Il chiosco diventa un luogo vivo.</h1>
-            <p class="sub">
-              Mille Edicola è un punto d’incontro tra editoria e pubblico: giornali e magazine selezionati,
-              presentazioni, mostre e incontri. E uno spazio fisico per attivazioni “on field” con i brand.
-            </p>
+<div class="wrap">
 
-            <div class="cta-row">
-              <a class="btn primary" href="#contatti">Richiedi disponibilità</a>
-              <a class="btn secondary" href="#brand">Attivazioni per brand</a>
-              <a class="btn" href="#concept">Scopri il concept</a>
-            </div>
+<div>Mille edicola</div>
 
-            <div class="trust" aria-label="indicatori">
-              <div><b>Stampa curata</b> italiana + internazionale</div>
-              <div><b>Programma</b> eventi e incontri</div>
-              <div><b>Location</b> ad alto passaggio</div>
-            </div>
-          </div>
+<div>
+<a href="#progetto">Progetto</a>
+<a href="#edicola">La nostra edicola</a>
+<a href="#collaborazioni">Collaborazioni</a>
+<a href="#location">Location</a>
+<a href="#contatti">Contatti</a>
+</div>
 
-          <aside class="card box" aria-label="In sintesi">
-            <h3>In breve</h3>
-            <ul class="bullets">
-              <li><span class="check">✓</span> Rivendita giornali con selezione editoriale premium</li>
-              <li><span class="check">✓</span> Presentazioni libri/magazine, mostre, talk</li>
-              <li><span class="check">✓</span> Hub per comunicazione e community</li>
-              <li><span class="check">✓</span> Pop-up, installazioni urbane, eventi “on field” per brand</li>
-            </ul>
-            <div class="divider"></div>
-            <span class="pill">📍 Porta Romana • Milano</span>
-          </aside>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <!-- CONCEPT -->
-    <section id="concept">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Un concept che unisce editoria e città</h2>
-          <p>
-            Mille Edicola conserva la funzione primaria dell’edicola e la valorizza come spazio di incontro,
-            cultura e dialogo, ospitando anche format contemporanei (talk, mostre, creator, podcast).
-          </p>
-        </div>
+</div>
 
-        <div class="grid3">
-          <div class="card box">
-            <h4>Selezione editoriale</h4>
-            <p>Stampa italiana e internazionale, testate verticali (moda, design, architettura, sport, ecc.), più libri e graphic novel.</p>
-          </div>
-          <div class="card box">
-            <h4>Eventi & community</h4>
-            <p>Presentazioni, incontri aperti al pubblico, dialogo tra stampa e persone. Un posto dove fermarsi, ascoltare, confrontarsi.</p>
-          </div>
-          <div class="card box">
-            <h4>Comunicazione fisica</h4>
-            <p>Una “location” urbana di impatto: piccola, riconoscibile, perfetta per storytelling e attivazioni nel mondo reale.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- HERO -->
 
-    <!-- COSA FACCIAMO -->
-    <section id="cosa-facciamo">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Cosa puoi fare da Mille Edicola</h2>
-          <p>Tre percorsi chiari: visitare, partecipare, collaborare.</p>
-        </div>
+<section>
 
-        <div class="grid2">
-          <div class="card box">
-            <h4>Per chi passa</h4>
-            <p>
-              Acquista giornali e magazine selezionati, scopri nuove uscite, titoli indipendenti e pubblicazioni di ricerca.
-              (Inserisci qui eventuali orari e servizi.)
-            </p>
-            <div class="divider"></div>
-            <a class="btn" href="#contatti">Chiedi info</a>
-          </div>
+<div class="wrap grid">
 
-          <div class="card box">
-            <h4>Per editori & autori</h4>
-            <p>
-              Lanci, firmacopie, talk, presentazioni editoriali: un format raccolto ma ad altissima qualità di pubblico.
-              (Inserisci qui requisiti e disponibilità.)
-            </p>
-            <div class="divider"></div>
-            <a class="btn" href="#contatti">Proponi un evento</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<div>
+<img src="hero.jpg" alt="edicola">
+</div>
 
-    <!-- BRAND -->
-    <section id="brand">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Per i brand</h2>
-          <p>
-            Concept pop-up, installazioni urbane, presentazioni e eventi “on field”:
-            opportunità di visibilità mirate in uno spazio fisico riconoscibile e ad alto impatto.
-          </p>
-        </div>
+<div id="contatti">
 
-        <div class="grid3">
-          <div class="card box">
-            <h4>Pop-up & sampling</h4>
-            <p>Un micro-spazio perfetto per prodotti editoriali e lifestyle, con attivazioni leggere ma memorabili.</p>
-          </div>
-          <div class="card box">
-            <h4>Installazioni urbane</h4>
-            <p>Un segno visivo che intercetta il passaggio e trasforma traffico in relazione (foto, contenuti, PR).</p>
-          </div>
-          <div class="card box">
-            <h4>Format su misura</h4>
-            <p>Dal lancio prodotto al talk con ospiti: costruzione format + calendarizzazione + comunicazione (se previsto).</p>
-          </div>
-        </div>
+<div class="hero-title">
+Mille<br>edicola
+</div>
 
-        <div class="divider"></div>
-        <div class="card box">
-          <h4>Pacchetti (esempi)</h4>
-          <p>
-            • 1 giorno “brand takeover” • 1 settimana pop-up • mini-rassegna talk (3 appuntamenti) • special edition editoriale.
-            <br/>👉 Se vuoi, dimmi i tuoi prezzi e li impagino qui in modo pulito.
-          </p>
-        </div>
-      </div>
-    </section>
+<div class="hero-text">
 
-    <!-- LOCATION -->
-    <section id="location">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Location</h2>
-          <p>Porta Romana, Milano — posizione strategica e pubblici trasversali (studenti, professionisti, internazionale).</p>
-        </div>
+LA FORMA CONTEMPORANEA<br>
+DELL’EDICOLA TRADIZIONALE
+<br><br>
 
-        <div class="grid2">
-          <div class="card box">
-            <h4>Dove siamo</h4>
-            <p>
-              <b>Via Giuseppe Ripamonti 2</b> — Milano (Porta Romana).
-              <br/>A pochi passi da Bocconi, e facilmente raggiungibile con M3 e linee tram.
-            </p>
-            <div class="divider"></div>
-            <!-- Sostituisci con il tuo link Google Maps -->
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank" rel="noreferrer">Apri su Google Maps</a>
-          </div>
+GIORNALI, EVENTI, DIALOGHI
+<br><br>
 
-          <div class="card box">
-            <h4>Pubblico</h4>
-            <p>
-              Quartiere residenziale e vivo: mix di studenti, professionisti e comunità internazionale,
-              ideale per progetti culturali e brand con posizionamento “curato”.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+MILANO, PORTA ROMANA<br>
+Via Giuseppe Ripamonti 2
+<br><br>
 
-    <!-- CONTATTI / FORM (NETLIFY FORMS READY) -->
-    <section id="contatti">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Contatti</h2>
-          <p>Richiedi disponibilità, proponi un evento o un’attivazione brand. Risposta rapida.</p>
-        </div>
+mille.edicola@milleedicola.com<br>
++39 02 36555550
 
-        <div class="grid2">
-          <div class="card box">
-            <h4>Scrivici</h4>
+</div>
 
-            <!-- NETLIFY FORMS: funziona se pubblichi su Netlify -->
-            <form name="mille-edicola" method="POST" data-netlify="true">
-              <input type="hidden" name="form-name" value="mille-edicola">
+</div>
 
-              <div class="form-row">
-                <div>
-                  <label for="nome">Nome e cognome</label>
-                  <input id="nome" name="nome" placeholder="Es. Marco Rossi" required />
-                </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="nome@azienda.it" required />
-                </div>
-              </div>
+</div>
 
-              <div class="form-row">
-                <div>
-                  <label for="tipo">Sto scrivendo per</label>
-                  <select id="tipo" name="tipo" required>
-                    <option value="" selected disabled>Seleziona</option>
-                    <option>Visita / info generali</option>
-                    <option>Proposta evento editoriale</option>
-                    <option>Attivazione brand / pop-up</option>
-                    <option>Partnership / PR</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="telefono">Telefono (opzionale)</label>
-                  <input id="telefono" name="telefono" placeholder="+39 ..." />
-                </div>
-              </div>
+</section>
 
-              <div>
-                <label for="messaggio">Messaggio</label>
-                <textarea id="messaggio" name="messaggio" placeholder="Dimmi cosa vuoi fare, date preferite, obiettivo, budget (se c’è)..." required></textarea>
-              </div>
+<!-- PROGETTO + EDICOLA -->
 
-              <button class="btn primary" type="submit">Invia</button>
-              <div class="note">
-                Privacy: i dati vengono usati solo per rispondere alla richiesta. (Inserisci qui link privacy se disponibile.)
-              </div>
-            </form>
-          </div>
+<section>
 
-          <div class="card box">
-            <h4>FAQ</h4>
-            <div class="faq">
-              <details>
-                <summary>Posso proporre un evento (libro/magazine/talk)?</summary>
-                <p>Sì: invia 2 righe su format, pubblico, ospiti e date preferite. Ti rispondiamo con disponibilità e requisiti.</p>
-              </details>
-              <details>
-                <summary>Fate anche attivazioni per brand?</summary>
-                <p>Sì: pop-up, installazioni urbane, presentazioni e format esperienziali. Obiettivo: trasformare passaggio in relazione.</p>
-              </details>
-              <details>
-                <summary>Qual è la “direzione” editoriale?</summary>
-                <p>Selezione curata: stampa italiana e internazionale, testate verticali e titoli di ricerca, più libri e graphic novel.</p>
-              </details>
-            </div>
+<div class="wrap grid">
 
-            <div class="divider"></div>
-            <h4>Contatto diretto (backup)</h4>
-            <p class="sub">
-              Inserisci qui: email / WhatsApp / Instagram.
-              <br/>Esempio WhatsApp: <code>https://wa.me/39NUMERO</code>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="progetto">
 
-    <footer>
-      <div class="wrap">
-        <div class="divider"></div>
-        <div class="footgrid">
-          <div>
-            <div class="logo"><div class="mark" aria-hidden="true"></div><div>Mille Edicola</div></div>
-            <div class="small">© <span id="y"></span> • Milano • Porta Romana</div>
-          </div>
-          <div class="small">
-            <div><a href="#contatti">Contatti</a> • <a href="#brand">Brand</a> • <a href="#location">Location</a></div>
-            <div style="margin-top:6px;">(Inserisci qui P.IVA / Credits / Privacy)</div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
+<div class="title">Il progetto</div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+<div class="text">
+Mille Edicola nasce a Milano come evoluzione dell’edicola tradizionale.
+Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.
+</div>
+
+</div>
+
+<div id="edicola">
+
+<div class="title">La nostra edicola</div>
+
+<div class="slider">
+
+<div class="slides" id="slides">
+
+<div class="slide"><img src="edicola1.jpg"></div>
+<div class="slide"><img src="edicola2.jpg"></div>
+<div class="slide"><img src="edicola3.jpg"></div>
+<div class="slide"><img src="edicola4.jpg"></div>
+
+</div>
+
+</div>
+
+<div class="controls">
+
+<button onclick="prev()">←</button>
+<button onclick="next()">→</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COLLABORAZIONI + LOCATION -->
+
+<section>
+
+<div class="wrap grid">
+
+<div id="collaborazioni">
+
+<div class="title">Collaborazioni</div>
+
+<div class="text">
+Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali.
+</div>
+
+<ul>
+
+<li>Pop-up editoriali</li>
+<li>Presentazioni</li>
+<li>Brand takeover</li>
+<li>Installazioni urbane</li>
+
+</ul>
+
+</div>
+
+<div id="location">
+
+<div class="title">Location</div>
+
+<div class="text">
+
+Milano<br>
+Porta Romana
+<br><br>
+
+Via Giuseppe Ripamonti 2<br>
++39 02 36555550<br>
+mille.edicola@milleedicola.com
+
+</div>
+
+<br>
+
+<a href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank">
+Indicazioni
+</a>
+
+<br><br>
+
+<div class="map">
+
+<iframe
+src="https://www.google.com/maps?q=Via+Giuseppe+Ripamonti+2+Milano&output=embed"
+loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+Mille Edicola Srl – Via Giuseppe Ripamonti 2, Milano – P.IVA XXXXXXXX<br>
+© 2025 Mille Edicola – Tutti i diritti riservati
+
+</div>
+
+<script>
+
+let slide=0
+
+function showSlide(){
+const slides=document.getElementById("slides")
+slides.style.transform="translateX(-"+slide*100+"%)"
+}
+
+function next(){
+slide++
+if(slide>3){slide=0}
+showSlide()
+}
+
+function prev(){
+slide--
+if(slide<0){slide=3}
+showSlide()
+}
+
+</script>
+
 </body>
 </html>
