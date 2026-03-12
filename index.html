@@ -1,367 +1,529 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Mille Edicola</title>
 
 <style>
-
-body{
-margin:0;
-font-family:Georgia, serif;
-background:#f5f2ee;
-color:#1a1a1a;
+:root{
+  --bg:#f5f2ee;
+  --surface:#f8f6f3;
+  --text:#171717;
+  --muted:#4b4b4b;
+  --line:#e3ddd6;
+  --black:#0d0d0d;
+  --white:#ffffff;
+  --max:1220px;
+  --pad:28px;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--serif);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
 
 .wrap{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+  max-width:var(--max);
+  margin:auto;
+  padding:0 var(--pad);
 }
 
 section{
-padding:60px 0;
-border-bottom:1px solid #ddd;
+  padding:58px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:42px;
+  align-items:start;
 }
 
 /* NAVBAR */
 
 .navbar{
-background:#000;
-color:#fff;
-position:sticky;
-top:0;
-z-index:100;
+  background:rgba(0,0,0,.96);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .navbar .wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+  gap:20px;
+}
+
+.brand{
+  font-size:24px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  flex-wrap:wrap;
 }
 
 .navbar a{
-color:white;
-margin-left:25px;
-font-family:sans-serif;
-font-size:14px;
+  color:white;
+  font-family:var(--sans);
+  font-size:14px;
+  letter-spacing:.01em;
+  opacity:.95;
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:.18s ease;
+}
+
+.navbar a:hover{
+  border-bottom-color:#fff;
+  opacity:1;
 }
 
 /* HERO */
 
+.hero{
+  padding-top:34px;
+}
+
+.hero .grid{
+  gap:48px;
+}
+
+.hero-image img{
+  width:100%;
+  height:640px;
+  object-fit:cover;
+}
+
+.hero-copy{
+  padding-top:10px;
+}
+
 .hero-title{
-font-size:90px;
-line-height:0.9;
-margin-bottom:30px;
+  font-size:96px;
+  line-height:.84;
+  letter-spacing:-.04em;
+  margin:0 0 30px;
+  font-weight:500;
 }
 
 .hero-text{
-font-family:sans-serif;
-font-size:20px;
-line-height:1.6;
+  font-family:var(--sans);
+  font-size:22px;
+  line-height:1.55;
+  text-transform:uppercase;
+  color:#282828;
+  margin-bottom:28px;
 }
 
-/* PROJECT */
+.hero-meta{
+  font-family:var(--sans);
+  font-size:18px;
+  line-height:1.9;
+  color:#2f2f2f;
+}
+
+/* TESTI */
 
 .title{
-font-size:32px;
-margin-bottom:20px;
+  font-size:34px;
+  line-height:1.08;
+  margin:0 0 20px;
+  font-weight:500;
+  letter-spacing:-.02em;
 }
 
 .text{
-font-size:20px;
-line-height:1.6;
+  font-size:20px;
+  line-height:1.7;
+  color:#333;
+}
+
+.project-box{
+  padding-right:16px;
+  min-height:100%;
+}
+
+.gallery-box{
+  padding-left:16px;
+  border-left:1px solid var(--line);
+  min-height:100%;
 }
 
 /* SLIDER */
 
 .slider{
-position:relative;
-overflow:hidden;
+  position:relative;
+  overflow:hidden;
+  background:#ece7e2;
 }
 
 .slides{
-display:flex;
-transition:transform 0.4s ease;
+  display:flex;
+  transition:transform .45s ease;
 }
 
 .slide{
-min-width:100%;
+  min-width:100%;
 }
 
 .slide img{
-width:100%;
-height:350px;
-object-fit:cover;
+  width:100%;
+  height:380px;
+  object-fit:cover;
+  transition:transform .45s ease;
+}
+
+.slide img:hover{
+  transform:scale(1.03);
 }
 
 .controls{
-margin-top:10px;
-display:flex;
-justify-content:space-between;
+  margin-top:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
 }
 
-button{
-background:none;
-border:1px solid #ccc;
-padding:8px 14px;
-cursor:pointer;
+.controls button{
+  background:transparent;
+  border:1px solid #c8c0b8;
+  color:#111;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:18px;
+  transition:.18s ease;
 }
 
-/* COLLABORAZIONI */
+.controls button:hover{
+  background:#ece6e0;
+}
+
+/* BLOCCO BASSO */
+
+.lower{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:42px;
+  align-items:start;
+}
+
+.collab-box{
+  padding-right:16px;
+}
+
+.location-box{
+  padding-left:16px;
+  border-left:1px solid var(--line);
+}
 
 ul{
-font-size:18px;
-line-height:2;
+  font-size:18px;
+  line-height:2;
+  color:#2e2e2e;
+  padding-left:24px;
+  margin:18px 0 24px;
 }
 
-/* LOCATION */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 24px;
+  border:1px solid #c8c0b8;
+  border-radius:999px;
+  background:transparent;
+  font-family:var(--sans);
+  font-size:16px;
+  color:#151515;
+  transition:.18s ease;
+}
+
+.btn:hover{
+  background:#ece6e0;
+}
+
+.location-heading{
+  font-size:34px;
+  line-height:1.08;
+  margin:0 0 18px;
+  font-weight:500;
+}
+
+.location-meta{
+  font-family:var(--sans);
+  font-size:18px;
+  line-height:1.9;
+  color:#2f2f2f;
+  margin-bottom:18px;
+}
+
+.map{
+  margin-top:20px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#eae5df;
+}
 
 .map iframe{
-width:100%;
-height:260px;
-border:0;
+  width:100%;
+  height:260px;
+  border:0;
+  display:block;
 }
 
 /* FOOTER */
 
 .footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px;
-font-family:sans-serif;
-font-size:14px;
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:22px;
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.8;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-.grid{
-grid-template-columns:1fr;
-}
+  .grid,
+  .lower{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
 
-.hero-title{
-font-size:60px;
-}
+  .gallery-box,
+  .location-box{
+    padding-left:0;
+    border-left:none;
+  }
 
-}
+  .project-box,
+  .collab-box{
+    padding-right:0;
+  }
 
+  .navbar .wrap{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav-links{
+    gap:16px;
+  }
+
+  .hero-title{
+    font-size:68px;
+  }
+
+  .hero-image img{
+    height:420px;
+  }
+
+  .hero-text{
+    font-size:19px;
+  }
+
+  .title,
+  .location-heading{
+    font-size:28px;
+  }
+
+  .text{
+    font-size:18px;
+  }
+
+  .slide img{
+    height:280px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-
 <div class="navbar">
+  <div class="wrap">
+    <div class="brand">Mille edicola</div>
 
-<div class="wrap">
-
-<div>Mille edicola</div>
-
-<div>
-<a href="#progetto">Progetto</a>
-<a href="#edicola">La nostra edicola</a>
-<a href="#collaborazioni">Collaborazioni</a>
-<a href="#location">Location</a>
-<a href="#contatti">Contatti</a>
-</div>
-
-</div>
-
+    <div class="nav-links">
+      <a href="#progetto">Progetto</a>
+      <a href="#edicola">La nostra edicola</a>
+      <a href="#collaborazioni">Collaborazioni</a>
+      <a href="#location">Location</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
+<section class="hero">
+  <div class="wrap grid">
+    <div class="hero-image">
+      <img src="hero.jpg" alt="Edicola">
+    </div>
 
-<section>
+    <div class="hero-copy" id="contatti">
+      <div class="hero-title">
+        Mille<br>edicola
+      </div>
 
-<div class="wrap grid">
+      <div class="hero-text">
+        LA FORMA CONTEMPORANEA<br>
+        DELL’EDICOLA TRADIZIONALE
+        <br><br>
+        GIORNALI, EVENTI, DIALOGHI
+      </div>
 
-<div>
-<img src="hero.jpg" alt="edicola">
-</div>
-
-<div id="contatti">
-
-<div class="hero-title">
-Mille<br>edicola
-</div>
-
-<div class="hero-text">
-
-LA FORMA CONTEMPORANEA<br>
-DELL’EDICOLA TRADIZIONALE
-<br><br>
-
-GIORNALI, EVENTI, DIALOGHI
-<br><br>
-
-MILANO, PORTA ROMANA<br>
-Via Giuseppe Ripamonti 2
-<br><br>
-
-mille.edicola@milleedicola.com<br>
-+39 02 36555550
-
-</div>
-
-</div>
-
-</div>
-
+      <div class="hero-meta">
+        MILANO, PORTA ROMANA<br>
+        Via Giuseppe Ripamonti 2
+        <br><br>
+        mille.edicola@milleedicola.com<br>
+        +39 02 36555550
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- PROGETTO + EDICOLA -->
-
 <section>
+  <div class="wrap grid">
+    <div class="project-box" id="progetto">
+      <div class="title">Il progetto</div>
 
-<div class="wrap grid">
+      <div class="text">
+        Mille Edicola nasce a Milano come evoluzione dell’edicola tradizionale.
+        Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.
+      </div>
+    </div>
 
-<div id="progetto">
+    <div class="gallery-box" id="edicola">
+      <div class="title">La nostra edicola</div>
 
-<div class="title">Il progetto</div>
+      <div class="slider">
+        <div class="slides" id="slides">
+          <div class="slide"><img src="edicola1.jpg" alt="Edicola 1"></div>
+          <div class="slide"><img src="edicola2.jpg" alt="Edicola 2"></div>
+          <div class="slide"><img src="edicola3.jpg" alt="Edicola 3"></div>
+          <div class="slide"><img src="edicola4.jpg" alt="Edicola 4"></div>
+        </div>
+      </div>
 
-<div class="text">
-Mille Edicola nasce a Milano come evoluzione dell’edicola tradizionale.
-Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.
-</div>
-
-</div>
-
-<div id="edicola">
-
-<div class="title">La nostra edicola</div>
-
-<div class="slider">
-
-<div class="slides" id="slides">
-
-<div class="slide"><img src="edicola1.jpg"></div>
-<div class="slide"><img src="edicola2.jpg"></div>
-<div class="slide"><img src="edicola3.jpg"></div>
-<div class="slide"><img src="edicola4.jpg"></div>
-
-</div>
-
-</div>
-
-<div class="controls">
-
-<button onclick="prev()">←</button>
-<button onclick="next()">→</button>
-
-</div>
-
-</div>
-
-</div>
-
+      <div class="controls">
+        <button onclick="prev()">←</button>
+        <button onclick="next()">→</button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- COLLABORAZIONI + LOCATION -->
-
 <section>
+  <div class="wrap lower">
+    <div class="collab-box" id="collaborazioni">
+      <div class="title">Collaborazioni</div>
 
-<div class="wrap grid">
+      <div class="text">
+        Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali.
+      </div>
 
-<div id="collaborazioni">
+      <ul>
+        <li>Pop-up editoriali</li>
+        <li>Presentazioni</li>
+        <li>Brand takeover</li>
+        <li>Installazioni urbane</li>
+      </ul>
 
-<div class="title">Collaborazioni</div>
+      <a class="btn" href="mailto:mille.edicola@milleedicola.com">Proponi un progetto</a>
+    </div>
 
-<div class="text">
-Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali.
-</div>
+    <div class="location-box" id="location">
+      <div class="title">Location</div>
 
-<ul>
+      <div class="location-heading">
+        Milano<br>
+        Porta Romana
+      </div>
 
-<li>Pop-up editoriali</li>
-<li>Presentazioni</li>
-<li>Brand takeover</li>
-<li>Installazioni urbane</li>
+      <div class="location-meta">
+        Via Giuseppe Ripamonti 2<br>
+        +39 02 36555550<br>
+        mille.edicola@milleedicola.com
+      </div>
 
-</ul>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank" rel="noreferrer">
+        Indicazioni
+      </a>
 
-</div>
-
-<div id="location">
-
-<div class="title">Location</div>
-
-<div class="text">
-
-Milano<br>
-Porta Romana
-<br><br>
-
-Via Giuseppe Ripamonti 2<br>
-+39 02 36555550<br>
-mille.edicola@milleedicola.com
-
-</div>
-
-<br>
-
-<a href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank">
-Indicazioni
-</a>
-
-<br><br>
-
-<div class="map">
-
-<iframe
-src="https://www.google.com/maps?q=Via+Giuseppe+Ripamonti+2+Milano&output=embed"
-loading="lazy">
-</iframe>
-
-</div>
-
-</div>
-
-</div>
-
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps?q=Via+Giuseppe+Ripamonti+2+Milano&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-
 <div class="footer">
-
-Mille Edicola Srl – Via Giuseppe Ripamonti 2, Milano – P.IVA XXXXXXXX<br>
-© 2025 Mille Edicola – Tutti i diritti riservati
-
+  Mille Edicola Srl – Via Giuseppe Ripamonti 2, Milano – P.IVA XXXXXXXX<br>
+  © 2025 Mille Edicola – Tutti i diritti riservati
 </div>
 
 <script>
-
-let slide=0
+let slide = 0;
+const totalSlides = 4;
 
 function showSlide(){
-const slides=document.getElementById("slides")
-slides.style.transform="translateX(-"+slide*100+"%)"
+  const slides = document.getElementById("slides");
+  slides.style.transform = "translateX(-" + slide * 100 + "%)";
 }
 
 function next(){
-slide++
-if(slide>3){slide=0}
-showSlide()
+  slide++;
+  if(slide >= totalSlides){ slide = 0; }
+  showSlide();
 }
 
 function prev(){
-slide--
-if(slide<0){slide=3}
-showSlide()
+  slide--;
+  if(slide < 0){ slide = totalSlides - 1; }
+  showSlide();
 }
 
+setInterval(next, 4000);
 </script>
 
 </body>
