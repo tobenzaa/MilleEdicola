@@ -7,15 +7,15 @@
 
   <style>
     :root{
-      --bg:#fdfcf9;
+      --bg:#fcfbf8;
       --surface:#ffffff;
       --text:#111111;
       --muted:#7a7a7a;
-      --line:#d9d5cf;
+      --line:#ddd7cf;
       --max:1280px;
       --pad:28px;
-      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
 
     *{box-sizing:border-box}
@@ -44,7 +44,7 @@
     }
 
     .section-inner{
-      padding:54px 0 60px;
+      padding:56px 0 62px;
     }
 
     /* NAV */
@@ -52,17 +52,17 @@
       position:sticky;
       top:0;
       z-index:100;
-      background:rgba(253,252,249,.94);
+      background:rgba(252,251,248,.94);
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
 
     .nav-inner{
+      min-height:76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:20px;
-      min-height:76px;
     }
 
     .nav-brand img{
@@ -83,7 +83,7 @@
     }
 
     .nav-links a{
-      color:#222;
+      color:#202020;
       opacity:.85;
       transition:.2s ease;
     }
@@ -99,24 +99,25 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: .95fr 1.05fr;
+      grid-template-columns: 1.02fr .98fr;
       gap:56px;
       align-items:start;
-      padding:40px 0 56px;
+      padding:40px 0 58px;
     }
 
-    .hero-left{
+    .hero-left,
+    .hero-right{
       border-top:2px solid #111;
       padding-top:28px;
     }
 
     .hero-kicker{
+      margin:0 0 34px;
       font-family:var(--sans);
       font-size:14px;
       letter-spacing:.28em;
       text-transform:uppercase;
       color:var(--muted);
-      margin:0 0 36px;
     }
 
     .hero-logo{
@@ -131,18 +132,13 @@
 
     .hero-tagline{
       max-width:680px;
+      margin:0;
       font-family:var(--sans);
       font-size:19px;
       line-height:1.9;
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:#4d4d4d;
-      margin:0 0 30px;
-    }
-
-    .hero-right{
-      border-top:2px solid #111;
-      padding-top:28px;
+      color:#4b4b4b;
     }
 
     .hero-image img{
@@ -152,20 +148,20 @@
     }
 
     .hero-meta{
-      margin-top:24px;
+      margin-top:26px;
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
       font-family:var(--sans);
     }
 
     .meta-item small{
       display:block;
+      margin-bottom:8px;
       font-size:12px;
       letter-spacing:.2em;
       text-transform:uppercase;
       color:var(--muted);
-      margin-bottom:8px;
     }
 
     .meta-item div{
@@ -173,20 +169,20 @@
       line-height:1.6;
     }
 
-    /* SHARED SECTION GRID */
+    /* SHARED SECTION */
     .editorial-grid{
       display:grid;
-      grid-template-columns: 90px 1fr;
+      grid-template-columns:90px 1fr;
       gap:26px;
     }
 
     .section-index{
+      padding-top:10px;
       font-family:var(--sans);
       font-size:14px;
       letter-spacing:.2em;
       text-transform:uppercase;
       color:var(--muted);
-      padding-top:10px;
     }
 
     .section-body{
@@ -194,49 +190,23 @@
     }
 
     .section-title{
+      margin:0 0 26px;
       font-size:74px;
       line-height:.95;
       letter-spacing:-.03em;
-      margin:0 0 28px;
       font-weight:500;
     }
 
     .section-copy{
+      margin:0;
       font-size:28px;
       line-height:1.65;
-      max-width:1050px;
-      margin:0;
-    }
-
-    /* STATS */
-    .stats{
-      margin-top:44px;
-      padding-top:28px;
-      border-top:1px solid var(--line);
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:28px;
-    }
-
-    .stat strong{
-      display:block;
-      font-size:68px;
-      line-height:1;
-      margin-bottom:8px;
-      font-weight:600;
-    }
-
-    .stat span{
-      font-family:var(--sans);
-      font-size:13px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
+      max-width:1020px;
     }
 
     /* GALLERY */
     .gallery-wrap{
-      margin-top:30px;
+      margin-top:18px;
       overflow-x:auto;
       scroll-snap-type:x mandatory;
       -webkit-overflow-scrolling:touch;
@@ -267,8 +237,13 @@
 
     .gallery-card img{
       width:100%;
-      height:420px;
+      height:430px;
       object-fit:cover;
+      transition:transform .35s ease;
+    }
+
+    .gallery-card:hover img{
+      transform:scale(1.02);
     }
 
     .gallery-card .caption{
@@ -280,40 +255,41 @@
       color:var(--muted);
     }
 
-    /* COLLAB LIST */
-    .formats{
-      margin-top:26px;
-      border-top:1px solid var(--line);
-    }
-
-    .format-row{
+    /* LOCATION */
+    .location-grid{
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:20px;
-      align-items:center;
-      padding:24px 0;
-      border-bottom:1px solid var(--line);
+      grid-template-columns:1fr 1.15fr;
+      gap:34px;
+      align-items:start;
     }
 
-    .format-row strong{
-      font-size:28px;
-      font-weight:500;
+    .location-list{
+      display:grid;
+      gap:28px;
+      margin-top:10px;
     }
 
-    .format-row span{
+    .location-item small{
+      display:block;
+      margin-bottom:10px;
       font-family:var(--sans);
-      font-size:13px;
-      letter-spacing:.18em;
+      font-size:12px;
+      letter-spacing:.22em;
       text-transform:uppercase;
       color:var(--muted);
     }
 
-    .cta{
-      margin-top:34px;
+    .location-item div{
+      font-size:28px;
+      line-height:1.45;
+    }
+
+    .map-link{
+      margin-top:8px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:18px 30px;
+      padding:18px 28px;
       border:1px solid #111;
       background:#fff;
       font-family:var(--sans);
@@ -323,41 +299,13 @@
       transition:.2s ease;
     }
 
-    .cta:hover{
+    .map-link:hover{
       background:#111;
       color:#fff;
     }
 
-    /* LOCATION */
-    .location-grid{
-      display:grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap:34px;
-      align-items:start;
-    }
-
-    .location-list{
-      display:grid;
-      gap:28px;
-      margin-top:14px;
-    }
-
-    .location-item small{
-      display:block;
-      font-family:var(--sans);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:10px;
-    }
-
-    .location-item div{
-      font-size:28px;
-      line-height:1.45;
-    }
-
     .map{
+      margin-top:18px;
       border:1px solid var(--line);
       overflow:hidden;
       background:#f4f1ec;
@@ -370,30 +318,10 @@
       display:block;
     }
 
-    .map-link{
-      margin-top:20px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px 28px;
-      border:1px solid #111;
-      font-family:var(--sans);
-      font-size:14px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      background:#fff;
-      transition:.2s ease;
-    }
-
-    .map-link:hover{
-      background:#111;
-      color:#fff;
-    }
-
     /* CONTACTS */
     .contact-grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:1fr 1fr;
       gap:34px;
       align-items:start;
     }
@@ -405,12 +333,12 @@
 
     .contact-item small{
       display:block;
+      margin-bottom:10px;
       font-family:var(--sans);
       font-size:12px;
       letter-spacing:.22em;
       text-transform:uppercase;
       color:var(--muted);
-      margin-bottom:10px;
     }
 
     .contact-item a,
@@ -444,12 +372,12 @@
 
     .form-grid label{
       display:block;
+      margin-bottom:8px;
       font-family:var(--sans);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
       color:var(--muted);
-      margin-bottom:8px;
     }
 
     .form-grid input,
@@ -463,8 +391,8 @@
     }
 
     .form-grid textarea{
-      resize:vertical;
       min-height:140px;
+      resize:vertical;
     }
 
     .submit-btn{
@@ -558,21 +486,12 @@
         font-size:21px;
       }
 
-      .stats{
-        grid-template-columns:1fr;
-        gap:20px;
-      }
-
       .gallery-card{
         flex:0 0 86%;
       }
 
       .gallery-card img{
         height:300px;
-      }
-
-      .format-row strong{
-        font-size:22px;
       }
 
       .location-item div,
@@ -597,9 +516,7 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#progetto">Progetto</a>
         <a href="#edicola">La nostra edicola</a>
-        <a href="#collaborazioni">Collaborazioni</a>
         <a href="#location">Location</a>
         <a href="#contatti">Contatti</a>
       </nav>
@@ -645,43 +562,10 @@
     </div>
   </section>
 
-  <!-- 01 PROGETTO -->
-  <section class="section" id="progetto">
-    <div class="wrap section-inner editorial-grid">
-      <div class="section-index">01</div>
-
-      <div class="section-body">
-        <h2 class="section-title">Il Progetto</h2>
-
-        <p class="section-copy">
-          Mille Edicola nasce a Milano come evoluzione dell’edicola tradizionale.
-          Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.
-          Non solo un punto vendita, ma un presidio culturale nel cuore di Porta Romana:
-          dove le idee circolano insieme alle pagine.
-        </p>
-
-        <div class="stats">
-          <div class="stat">
-            <strong>Mille</strong>
-            <span>Storie ogni giorno</span>
-          </div>
-          <div class="stat">
-            <strong>1</strong>
-            <span>Spazio unico</span>
-          </div>
-          <div class="stat">
-            <strong>∞</strong>
-            <span>Connessioni</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 EDICOLA -->
+  <!-- 01 EDICOLA -->
   <section class="section" id="edicola">
     <div class="wrap section-inner editorial-grid">
-      <div class="section-index">02</div>
+      <div class="section-index">01</div>
 
       <div class="section-body">
         <h2 class="section-title">La nostra Edicola</h2>
@@ -713,47 +597,10 @@
     </div>
   </section>
 
-  <!-- 03 COLLABORAZIONI -->
-  <section class="section" id="collaborazioni">
-    <div class="wrap section-inner editorial-grid">
-      <div class="section-index">03</div>
-
-      <div class="section-body">
-        <h2 class="section-title">Collaborazioni</h2>
-
-        <p class="section-copy" style="max-width:980px;">
-          Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali.
-          Un palcoscenico aperto alla città.
-        </p>
-
-        <div class="formats">
-          <div class="format-row">
-            <strong>Pop-up editoriali</strong>
-            <span>Formato →</span>
-          </div>
-          <div class="format-row">
-            <strong>Presentazioni</strong>
-            <span>Formato →</span>
-          </div>
-          <div class="format-row">
-            <strong>Brand takeover</strong>
-            <span>Formato →</span>
-          </div>
-          <div class="format-row">
-            <strong>Installazioni urbane</strong>
-            <span>Formato →</span>
-          </div>
-        </div>
-
-        <a class="cta" href="#contatti">Proponi un progetto →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 LOCATION -->
+  <!-- 02 LOCATION -->
   <section class="section" id="location">
     <div class="wrap section-inner editorial-grid">
-      <div class="section-index">04</div>
+      <div class="section-index">02</div>
 
       <div class="section-body">
         <h2 class="section-title">Location</h2>
@@ -799,10 +646,10 @@
     </div>
   </section>
 
-  <!-- 05 CONTATTI -->
+  <!-- 03 CONTATTI -->
   <section class="section" id="contatti">
     <div class="wrap section-inner editorial-grid">
-      <div class="section-index">05</div>
+      <div class="section-index">03</div>
 
       <div class="section-body">
         <h2 class="section-title">Contatti</h2>
@@ -827,7 +674,7 @@
 
           <div class="contact-form">
             <h3>Scrivici</h3>
-            <p>Per eventi, progetti editoriali o collaborazioni.</p>
+            <p>Per eventi, progetti editoriali o richieste di informazioni.</p>
 
             <form name="contatti" method="POST" data-netlify="true">
               <input type="hidden" name="form-name" value="contatti">
