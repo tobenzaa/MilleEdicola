@@ -1,897 +1,900 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mille Edicola — Milano</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mille Edicola</title>
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-```
-:root {
-  --ink: #0a0a0a;
-  --cream: #f8f8f8;
-  --warm: #e0e0e0;
-  --accent: #0a0a0a;
-  --gold: #ffffff;
-  --mid: #666666;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Libre Baskerville', serif;
-  overflow-x: hidden;
-}
-
-/* ── NOISE TEXTURE ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.4;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2.5rem;
-  background: var(--cream);
-  border-bottom: 1px solid var(--ink);
-  mix-blend-mode: normal;
-}
-
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--accent); }
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 64px;
-  border-bottom: 1px solid var(--ink);
-}
-
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 4rem 3rem 3rem;
-  border-right: 1px solid var(--ink);
-}
-
-.hero-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(4rem, 8vw, 9rem);
-  font-weight: 900;
-  line-height: 0.92;
-  color: var(--ink);
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--ink);
-}
-
-.hero-subtitle {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mid);
-  border-top: 1px solid var(--mid);
-  padding-top: 1.2rem;
-  line-height: 2;
-}
-
-.hero-right {
-  position: relative;
-  overflow: hidden;
-  background: var(--ink);
-}
-
-.hero-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.85;
-  mix-blend-mode: luminosity;
-  filter: contrast(1.1) sepia(0.15);
-  display: block;
-}
-
-.hero-overlay {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 2rem;
-  right: 2rem;
-}
-
-.hero-overlay p {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--cream);
-  opacity: 0.8;
-}
-
-/* ── MARQUEE ── */
-.marquee-wrap {
-  overflow: hidden;
-  border-bottom: 1px solid var(--ink);
-  background: var(--ink);
-  padding: 0.9rem 0;
-}
-
-.marquee-track {
-  display: flex;
-  gap: 4rem;
-  white-space: nowrap;
-  animation: marquee 22s linear infinite;
-}
-
-.marquee-track span {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  color: var(--cream);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-
-.marquee-track span.dot {
-  color: var(--accent);
-  font-style: normal;
-  opacity: 1;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ── SECTION LABEL ── */
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.section-label::after {
-  content: '';
-  display: block;
-  height: 1px;
-  width: 40px;
-  background: var(--mid);
-}
-
-/* ── PROGETTO ── */
-#progetto {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  border-bottom: 1px solid var(--ink);
-}
-
-.progetto-left {
-  padding: 4rem 3rem;
-  border-right: 1px solid var(--ink);
-  display: flex;
-  align-items: flex-start;
-}
-
-.progetto-right {
-  padding: 4rem 3rem;
-}
-
-.progetto-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  margin-bottom: 2rem;
-}
-
-.progetto-heading em {
-  font-style: italic;
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.progetto-body {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--ink);
-  max-width: 520px;
-}
-
-.progetto-body p + p {
-  margin-top: 1.2rem;
-}
-
-.stat-row {
-  display: flex;
-  gap: 3rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--warm);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.stat-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-
-/* ── GALLERY ── */
-#edicola {
-  border-bottom: 1px solid var(--ink);
-}
-
-.gallery-header {
-  padding: 3rem 3rem 2rem;
-  border-bottom: 1px solid var(--ink);
-}
-
-.gallery-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 700;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  border-right: 1px solid var(--ink);
-  cursor: pointer;
-}
-
-.gallery-item:last-child { border-right: none; }
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(20%) contrast(1.05);
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s;
-  display: block;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.06);
-  filter: grayscale(0%) contrast(1.1);
-}
-
-.gallery-item-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(26,20,8,0.7));
-  padding: 1.5rem 1.2rem 1rem;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.gallery-item:hover .gallery-item-overlay { opacity: 1; }
-
-.gallery-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--cream);
-  letter-spacing: 0.15em;
-  opacity: 0.7;
-}
-
-/* ── COLLABORAZIONI ── */
-#collaborazioni {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  border-bottom: 1px solid var(--ink);
-}
-
-.collab-left {
-  padding: 4rem 3rem;
-  border-right: 1px solid var(--ink);
-}
-
-.collab-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 700;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-}
-
-.collab-title em { font-style: italic; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
-
-.collab-desc {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--mid);
-  max-width: 440px;
-  margin-bottom: 3rem;
-}
-
-.collab-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.collab-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 0;
-  border-top: 1px solid var(--warm);
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  cursor: default;
-  transition: color 0.2s;
-}
-
-.collab-list li:last-child { border-bottom: 1px solid var(--warm); }
-.collab-list li:hover { color: var(--accent); }
-
-.collab-list li span {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-
-.collab-cta {
-  margin-top: 3rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 1rem 2rem;
-  background: var(--ink);
-  color: var(--cream);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.btn:hover {
-  background: var(--accent);
-  color: var(--cream);
-}
-
-.btn-arrow { font-size: 1rem; }
-
-.collab-right {
-  padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.collab-pullquote {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--ink);
-  border-left: 3px solid var(--ink);
-  padding-left: 1.5rem;
-}
-
-/* ── LOCATION ── */
-#location {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--ink);
-}
-
-.location-left {
-  padding: 4rem 3rem;
-  border-right: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--cream);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 420px;
-}
-
-.location-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  font-weight: 900;
-  line-height: 1;
-  color: var(--cream);
-}
-
-.location-title em { color: var(--cream); font-style: italic; }
-
-.location-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.location-detail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.detail-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #aaaaaa;
-  opacity: 0.8;
-}
-
-.detail-value {
-  font-size: 0.95rem;
-  color: var(--cream);
-  opacity: 0.9;
-}
-
-.location-right {
-  padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.map-placeholder {
-  flex: 1;
-  background: var(--warm);
-  border: 1px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 220px;
-  margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.map-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(26,20,8,0.05) 30px, rgba(26,20,8,0.05) 31px),
-    repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(26,20,8,0.05) 30px, rgba(26,20,8,0.05) 31px);
-}
-
-.map-dot {
-  width: 12px; height: 12px;
-  background: var(--ink);
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-}
-
-.map-dot::after {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  opacity: 0.4;
-  animation: ping 2s ease-out infinite;
-}
-
-@keyframes ping {
-  from { transform: scale(1); opacity: 0.4; }
-  to { transform: scale(2.5); opacity: 0; }
-}
-
-.map-link {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: color 0.2s;
-}
-
-.map-link:hover { color: var(--accent); }
-
-/* ── CONTATTI ── */
-#contatti {
-  border-bottom: 1px solid var(--ink);
-  padding: 4rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
-}
-
-.contact-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.contact-block a {
-  font-size: 1rem;
-  color: var(--ink);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.contact-block a:hover { color: var(--accent); }
-
-/* ── FOOTER ── */
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 3rem;
-  background: var(--ink);
-  color: var(--cream);
-}
-
-footer p {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.5;
-}
-
-/* ── ANIMATIONS ── */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { min-height: 50vw; }
-  .hero-left { padding: 3rem 1.5rem; }
-
-  #progetto { grid-template-columns: 1fr; }
-  .progetto-left { display: none; }
-  .progetto-right { padding: 3rem 1.5rem; }
-
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item { border-right: none; border-bottom: 1px solid var(--ink); }
-
-  #collaborazioni { grid-template-columns: 1fr; }
-  .collab-right { display: none; }
-  .collab-left { padding: 3rem 1.5rem; border-right: none; }
-
-  #location { grid-template-columns: 1fr; }
-  .location-left { border-right: none; }
-  .location-right { padding: 3rem 1.5rem; }
-
-  #contatti { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-
-  footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
-}
-```
-
+    :root{
+      --bg:#fdfcf9;
+      --surface:#ffffff;
+      --text:#111111;
+      --muted:#7a7a7a;
+      --line:#d9d5cf;
+      --max:1280px;
+      --pad:28px;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--serif);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button,input,textarea{font:inherit}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 var(--pad);
+    }
+
+    .section{
+      border-top:1px solid var(--line);
+    }
+
+    .section-inner{
+      padding:54px 0 60px;
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(253,252,249,.94);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      min-height:76px;
+    }
+
+    .nav-brand img{
+      height:34px;
+      width:auto;
+      display:block;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      flex-wrap:wrap;
+      font-family:var(--sans);
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .nav-links a{
+      color:#222;
+      opacity:.85;
+      transition:.2s ease;
+    }
+
+    .nav-links a:hover{
+      opacity:1;
+    }
+
+    /* HERO */
+    .hero{
+      border-top:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:56px;
+      align-items:start;
+      padding:40px 0 56px;
+    }
+
+    .hero-left{
+      border-top:2px solid #111;
+      padding-top:28px;
+    }
+
+    .hero-kicker{
+      font-family:var(--sans);
+      font-size:14px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 36px;
+    }
+
+    .hero-logo{
+      margin:0 0 28px;
+    }
+
+    .hero-logo img{
+      width:100%;
+      max-width:420px;
+      height:auto;
+    }
+
+    .hero-tagline{
+      max-width:680px;
+      font-family:var(--sans);
+      font-size:19px;
+      line-height:1.9;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#4d4d4d;
+      margin:0 0 30px;
+    }
+
+    .hero-right{
+      border-top:2px solid #111;
+      padding-top:28px;
+    }
+
+    .hero-image img{
+      width:100%;
+      height:760px;
+      object-fit:cover;
+    }
+
+    .hero-meta{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+      font-family:var(--sans);
+    }
+
+    .meta-item small{
+      display:block;
+      font-size:12px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .meta-item div{
+      font-size:17px;
+      line-height:1.6;
+    }
+
+    /* SHARED SECTION GRID */
+    .editorial-grid{
+      display:grid;
+      grid-template-columns: 90px 1fr;
+      gap:26px;
+    }
+
+    .section-index{
+      font-family:var(--sans);
+      font-size:14px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding-top:10px;
+    }
+
+    .section-body{
+      min-width:0;
+    }
+
+    .section-title{
+      font-size:74px;
+      line-height:.95;
+      letter-spacing:-.03em;
+      margin:0 0 28px;
+      font-weight:500;
+    }
+
+    .section-copy{
+      font-size:28px;
+      line-height:1.65;
+      max-width:1050px;
+      margin:0;
+    }
+
+    /* STATS */
+    .stats{
+      margin-top:44px;
+      padding-top:28px;
+      border-top:1px solid var(--line);
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:28px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:68px;
+      line-height:1;
+      margin-bottom:8px;
+      font-weight:600;
+    }
+
+    .stat span{
+      font-family:var(--sans);
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    /* GALLERY */
+    .gallery-wrap{
+      margin-top:30px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      cursor:grab;
+      padding-bottom:10px;
+    }
+
+    .gallery-wrap:active{
+      cursor:grabbing;
+    }
+
+    .gallery-wrap::-webkit-scrollbar{
+      display:none;
+    }
+
+    .gallery-track{
+      display:flex;
+      gap:20px;
+      padding-right:30px;
+    }
+
+    .gallery-card{
+      flex:0 0 44%;
+      scroll-snap-align:start;
+      border:1px solid var(--line);
+      background:var(--surface);
+    }
+
+    .gallery-card img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+    }
+
+    .gallery-card .caption{
+      padding:14px 16px 18px;
+      font-family:var(--sans);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    /* COLLAB LIST */
+    .formats{
+      margin-top:26px;
+      border-top:1px solid var(--line);
+    }
+
+    .format-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      padding:24px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .format-row strong{
+      font-size:28px;
+      font-weight:500;
+    }
+
+    .format-row span{
+      font-family:var(--sans);
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .cta{
+      margin-top:34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 30px;
+      border:1px solid #111;
+      background:#fff;
+      font-family:var(--sans);
+      font-size:14px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      transition:.2s ease;
+    }
+
+    .cta:hover{
+      background:#111;
+      color:#fff;
+    }
+
+    /* LOCATION */
+    .location-grid{
+      display:grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap:34px;
+      align-items:start;
+    }
+
+    .location-list{
+      display:grid;
+      gap:28px;
+      margin-top:14px;
+    }
+
+    .location-item small{
+      display:block;
+      font-family:var(--sans);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+
+    .location-item div{
+      font-size:28px;
+      line-height:1.45;
+    }
+
+    .map{
+      border:1px solid var(--line);
+      overflow:hidden;
+      background:#f4f1ec;
+    }
+
+    .map iframe{
+      width:100%;
+      height:520px;
+      border:0;
+      display:block;
+    }
+
+    .map-link{
+      margin-top:20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 28px;
+      border:1px solid #111;
+      font-family:var(--sans);
+      font-size:14px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      background:#fff;
+      transition:.2s ease;
+    }
+
+    .map-link:hover{
+      background:#111;
+      color:#fff;
+    }
+
+    /* CONTACTS */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:34px;
+      align-items:start;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:30px;
+    }
+
+    .contact-item small{
+      display:block;
+      font-family:var(--sans);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+
+    .contact-item a,
+    .contact-item div{
+      font-size:28px;
+      line-height:1.45;
+    }
+
+    .contact-form{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:24px;
+    }
+
+    .contact-form h3{
+      margin:0 0 10px;
+      font-size:32px;
+      font-weight:500;
+    }
+
+    .contact-form p{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#4b4b4b;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .form-grid label{
+      display:block;
+      font-family:var(--sans);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .form-grid input,
+    .form-grid textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:#fff;
+      padding:14px 16px;
+      font-size:16px;
+      font-family:var(--sans);
+    }
+
+    .form-grid textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    .submit-btn{
+      margin-top:8px;
+      width:100%;
+      border:1px solid #111;
+      background:#111;
+      color:#fff;
+      padding:16px 20px;
+      font-family:var(--sans);
+      font-size:14px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .submit-btn:hover{
+      background:#fff;
+      color:#111;
+    }
+
+    /* FOOTER */
+    .footer{
+      border-top:1px solid var(--line);
+      padding:34px 0 50px;
+    }
+
+    .footer-inner{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-family:var(--sans);
+      font-size:13px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    /* MOBILE */
+    @media (max-width: 980px){
+      .nav-inner{
+        min-height:auto;
+        padding:18px 0;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links{
+        gap:16px;
+      }
+
+      .hero-grid,
+      .location-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+      }
+
+      .hero-image img{
+        height:460px;
+      }
+
+      .hero-logo img{
+        max-width:280px;
+      }
+
+      .hero-tagline{
+        font-size:16px;
+        line-height:1.8;
+      }
+
+      .hero-meta{
+        grid-template-columns:1fr;
+      }
+
+      .editorial-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      .section-title{
+        font-size:48px;
+        margin-bottom:18px;
+      }
+
+      .section-copy{
+        font-size:21px;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+
+      .gallery-card{
+        flex:0 0 86%;
+      }
+
+      .gallery-card img{
+        height:300px;
+      }
+
+      .format-row strong{
+        font-size:22px;
+      }
+
+      .location-item div,
+      .contact-item a,
+      .contact-item div{
+        font-size:22px;
+      }
+
+      .map iframe{
+        height:320px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="nav-brand">
+        <img src="logo.jpg" alt="Mille Edicola">
+      </a>
 
-  <nav>
-    <a href="#" class="nav-logo">Mille Edicola</a>
-    <ul class="nav-links">
-      <li><a href="#progetto">Progetto</a></li>
-      <li><a href="#edicola">Edicola</a></li>
-      <li><a href="#collaborazioni">Collaborazioni</a></li>
-      <li><a href="#location">Location</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-    </ul>
-  </nav>
+      <nav class="nav-links">
+        <a href="#progetto">Progetto</a>
+        <a href="#edicola">La nostra edicola</a>
+        <a href="#collaborazioni">Collaborazioni</a>
+        <a href="#location">Location</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <p class="hero-kicker">Milano · Porta Romana · Est. 2024</p>
 
-  <section class="hero">
-    <div class="hero-left">
-      <span class="hero-tag">Milano · Porta Romana · Est. 2024</span>
-      <div>
-        <h1 class="hero-title">Mille<br><em>Edicola</em></h1>
-      </div>
-      <div class="hero-subtitle">
-        La forma contemporanea<br>
-        dell'edicola tradizionale<br>
-        —<br>
-        Giornali · eventi · dialoghi
-      </div>
-    </div>
-    <div class="hero-right">
-      <img
-        src="https://69b2bfda15707e00087325b9--phenomenal-boba-c38372.netlify.app/hero.jpg"
-        alt="Mille Edicola"
-        onerror="this.style.display='none'"
-      />
-      <div class="hero-overlay">
-        <p>Via Giuseppe Ripamonti 2, Milano</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Giornali</span><span class="dot">◆</span>
-      <span>Riviste</span><span class="dot">◆</span>
-      <span>Cultura</span><span class="dot">◆</span>
-      <span>Pop-up</span><span class="dot">◆</span>
-      <span>Dialogo</span><span class="dot">◆</span>
-      <span>Incontri</span><span class="dot">◆</span>
-      <span>Carta Stampata</span><span class="dot">◆</span>
-      <span>Milano</span><span class="dot">◆</span>
-      <span>Giornali</span><span class="dot">◆</span>
-      <span>Riviste</span><span class="dot">◆</span>
-      <span>Cultura</span><span class="dot">◆</span>
-      <span>Pop-up</span><span class="dot">◆</span>
-      <span>Dialogo</span><span class="dot">◆</span>
-      <span>Incontri</span><span class="dot">◆</span>
-      <span>Carta Stampata</span><span class="dot">◆</span>
-      <span>Milano</span><span class="dot">◆</span>
-    </div>
-  </div>
-
-  <!-- PROGETTO -->
-
-  <section id="progetto">
-    <div class="progetto-left fade-in">
-      <div class="section-label">01 — Progetto</div>
-    </div>
-    <div class="progetto-right fade-in">
-      <div class="section-label">01 — Progetto</div>
-      <h2 class="progetto-heading">
-        Uno spazio per<br>la <em>carta stampata</em><br>e il dialogo
-      </h2>
-      <div class="progetto-body">
-        <p>Mille Edicola nasce a Milano come evoluzione dell'edicola tradizionale. Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.</p>
-        <p>Non solo un punto vendita, ma un presidio culturale nel cuore di Porta Romana: dove le idee circolano insieme alle pagine.</p>
-      </div>
-      <div class="stat-row">
-        <div class="stat">
-          <span class="stat-num">Mille</span>
-          <span class="stat-label">Storie ogni giorno</span>
+        <div class="hero-logo">
+          <img src="logo.jpg" alt="Mille Edicola">
         </div>
-        <div class="stat">
-          <span class="stat-num">1</span>
-          <span class="stat-label">Spazio unico</span>
+
+        <p class="hero-tagline">
+          La forma contemporanea dell’edicola tradizionale —
+          giornali, eventi, dialoghi.
+        </p>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <small>Indirizzo</small>
+            <div>Via Giuseppe Ripamonti 2, Milano</div>
+          </div>
+          <div class="meta-item">
+            <small>Email</small>
+            <div>mille.edicola@milleedicola.com</div>
+          </div>
+          <div class="meta-item">
+            <small>Telefono</small>
+            <div>+39 02 36555550</div>
+          </div>
         </div>
-        <div class="stat">
-          <span class="stat-num">∞</span>
-          <span class="stat-label">Connessioni</span>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-image">
+          <img src="hero.jpg" alt="Mille Edicola">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- 01 PROGETTO -->
+  <section class="section" id="progetto">
+    <div class="wrap section-inner editorial-grid">
+      <div class="section-index">01</div>
 
-  <section id="edicola">
-    <div class="gallery-header fade-in">
-      <div class="section-label">02 — La nostra edicola</div>
-      <h2 class="gallery-title">Lo spazio</h2>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item fade-in">
-        <img src="https://69b2bfda15707e00087325b9--phenomenal-boba-c38372.netlify.app/edicola1.jpg" alt="Edicola 1" onerror="this.parentElement.style.background='#2a2018'"/>
-        <div class="gallery-item-overlay"><p class="gallery-num">— 01</p></div>
-      </div>
-      <div class="gallery-item fade-in">
-        <img src="https://69b2bfda15707e00087325b9--phenomenal-boba-c38372.netlify.app/edicola2.jpg" alt="Edicola 2" onerror="this.parentElement.style.background='#3a2e1a'"/>
-        <div class="gallery-item-overlay"><p class="gallery-num">— 02</p></div>
-      </div>
-      <div class="gallery-item fade-in">
-        <img src="https://69b2bfda15707e00087325b9--phenomenal-boba-c38372.netlify.app/edicola3.jpg" alt="Edicola 3" onerror="this.parentElement.style.background='#1a1a0a'"/>
-        <div class="gallery-item-overlay"><p class="gallery-num">— 03</p></div>
-      </div>
-      <div class="gallery-item fade-in">
-        <img src="https://69b2bfda15707e00087325b9--phenomenal-boba-c38372.netlify.app/edicola4.jpg" alt="Edicola 4" onerror="this.parentElement.style.background='#2e2010'"/>
-        <div class="gallery-item-overlay"><p class="gallery-num">— 04</p></div>
+      <div class="section-body">
+        <h2 class="section-title">Il Progetto</h2>
+
+        <p class="section-copy">
+          Mille Edicola nasce a Milano come evoluzione dell’edicola tradizionale.
+          Uno spazio dedicato alla carta stampata, agli incontri e al dialogo.
+          Non solo un punto vendita, ma un presidio culturale nel cuore di Porta Romana:
+          dove le idee circolano insieme alle pagine.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>Mille</strong>
+            <span>Storie ogni giorno</span>
+          </div>
+          <div class="stat">
+            <strong>1</strong>
+            <span>Spazio unico</span>
+          </div>
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Connessioni</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- COLLABORAZIONI -->
+  <!-- 02 EDICOLA -->
+  <section class="section" id="edicola">
+    <div class="wrap section-inner editorial-grid">
+      <div class="section-index">02</div>
 
-  <section id="collaborazioni">
-    <div class="collab-left fade-in">
-      <div class="section-label">03 — Collaborazioni</div>
-      <h2 class="collab-title">Progetti<br><em>culturali</em><br>& attivazioni</h2>
-      <p class="collab-desc">Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali. Un palcoscenico aperto alla città.</p>
-      <ul class="collab-list">
-        <li>Pop-up editoriali <span>Formato →</span></li>
-        <li>Presentazioni <span>Formato →</span></li>
-        <li>Brand takeover <span>Formato →</span></li>
-        <li>Installazioni urbane <span>Formato →</span></li>
-      </ul>
-      <div class="collab-cta">
-        <a href="mailto:mille.edicola@milleedicola.com" class="btn">
-          Proponi un progetto <span class="btn-arrow">→</span>
-        </a>
+      <div class="section-body">
+        <h2 class="section-title">La nostra Edicola</h2>
+
+        <div class="gallery-wrap">
+          <div class="gallery-track">
+            <div class="gallery-card">
+              <img src="edicola1.jpg" alt="Edicola 1">
+              <div class="caption">Interno · Parete riviste</div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="edicola2.jpg" alt="Edicola 2">
+              <div class="caption">Interno · Tavolo editoriale</div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="edicola3.jpg" alt="Edicola 3">
+              <div class="caption">Interno · Dettaglio magazine</div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="edicola4.jpg" alt="Edicola 4">
+              <div class="caption">Facciata · Porta Romana</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="collab-right fade-in">
-      <div class="section-label">—</div>
-      <blockquote class="collab-pullquote">
-        "L'edicola come spazio vivo, luogo d'incontro e scambio culturale nel tessuto urbano."
-      </blockquote>
     </div>
   </section>
 
-  <!-- LOCATION -->
+  <!-- 03 COLLABORAZIONI -->
+  <section class="section" id="collaborazioni">
+    <div class="wrap section-inner editorial-grid">
+      <div class="section-index">03</div>
 
-  <section id="location">
-    <div class="location-left fade-in">
-      <div class="section-label" style="color: #aaaaaa;">04 — Dove siamo</div>
-      <h2 class="location-title">Milano<br><em>Porta<br>Romana</em></h2>
-      <div class="location-details">
-        <div class="location-detail-item">
-          <span class="detail-label">Indirizzo</span>
-          <span class="detail-value">Via Giuseppe Ripamonti 2</span>
+      <div class="section-body">
+        <h2 class="section-title">Collaborazioni</h2>
+
+        <p class="section-copy" style="max-width:980px;">
+          Mille Edicola ospita attivazioni editoriali, pop-up e progetti culturali.
+          Un palcoscenico aperto alla città.
+        </p>
+
+        <div class="formats">
+          <div class="format-row">
+            <strong>Pop-up editoriali</strong>
+            <span>Formato →</span>
+          </div>
+          <div class="format-row">
+            <strong>Presentazioni</strong>
+            <span>Formato →</span>
+          </div>
+          <div class="format-row">
+            <strong>Brand takeover</strong>
+            <span>Formato →</span>
+          </div>
+          <div class="format-row">
+            <strong>Installazioni urbane</strong>
+            <span>Formato →</span>
+          </div>
         </div>
-        <div class="location-detail-item">
-          <span class="detail-label">Telefono</span>
-          <span class="detail-value">+39 02 36555550</span>
-        </div>
-        <div class="location-detail-item">
-          <span class="detail-label">Email</span>
-          <span class="detail-value">mille.edicola@milleedicola.com</span>
-        </div>
+
+        <a class="cta" href="#contatti">Proponi un progetto →</a>
       </div>
-    </div>
-    <div class="location-right fade-in">
-      <div class="section-label">— Mappa</div>
-      <div class="map-placeholder">
-        <div class="map-dot"></div>
-      </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank" class="map-link">
-        Apri in Google Maps →
-      </a>
     </div>
   </section>
 
-  <!-- CONTATTI -->
+  <!-- 04 LOCATION -->
+  <section class="section" id="location">
+    <div class="wrap section-inner editorial-grid">
+      <div class="section-index">04</div>
 
-  <section id="contatti">
-    <div class="contact-block fade-in">
-      <div class="section-label">05 — Contatti</div>
-      <a href="mailto:mille.edicola@milleedicola.com">mille.edicola@milleedicola.com</a>
+      <div class="section-body">
+        <h2 class="section-title">Location</h2>
+
+        <div class="location-grid">
+          <div>
+            <div class="location-list">
+              <div class="location-item">
+                <small>Indirizzo</small>
+                <div>Via Giuseppe Ripamonti 2, Milano</div>
+              </div>
+
+              <div class="location-item">
+                <small>Quartiere</small>
+                <div>Porta Romana</div>
+              </div>
+
+              <div class="location-item">
+                <small>Telefono</small>
+                <div>+39 02 36555550</div>
+              </div>
+
+              <div class="location-item">
+                <small>Email</small>
+                <div>mille.edicola@milleedicola.com</div>
+              </div>
+            </div>
+
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Via+Giuseppe+Ripamonti+2+Milano" target="_blank" rel="noreferrer">
+              Apri in Google Maps →
+            </a>
+          </div>
+
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps?q=Via+Giuseppe+Ripamonti+2+Milano&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="contact-block fade-in">
-      <div class="section-label">— Telefono</div>
-      <a href="tel:+390236555550">+39 02 36555550</a>
-    </div>
-    <div class="contact-block fade-in">
-      <div class="section-label">— Social</div>
-      <a href="#">Instagram →</a>
+  </section>
+
+  <!-- 05 CONTATTI -->
+  <section class="section" id="contatti">
+    <div class="wrap section-inner editorial-grid">
+      <div class="section-index">05</div>
+
+      <div class="section-body">
+        <h2 class="section-title">Contatti</h2>
+
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-item">
+              <small>Email</small>
+              <a href="mailto:mille.edicola@milleedicola.com">mille.edicola@milleedicola.com</a>
+            </div>
+
+            <div class="contact-item">
+              <small>Telefono</small>
+              <a href="tel:+390236555550">+39 02 36555550</a>
+            </div>
+
+            <div class="contact-item">
+              <small>Social</small>
+              <a href="#">Instagram →</a>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Scrivici</h3>
+            <p>Per eventi, progetti editoriali o collaborazioni.</p>
+
+            <form name="contatti" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contatti">
+
+              <div class="form-grid">
+                <div>
+                  <label for="nome">Nome</label>
+                  <input id="nome" name="nome" type="text" required>
+                </div>
+
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required>
+                </div>
+
+                <div>
+                  <label for="messaggio">Messaggio</label>
+                  <textarea id="messaggio" name="messaggio" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Invia richiesta</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-
-  <footer>
-    <p>Mille Edicola Srl — Via Giuseppe Ripamonti 2, Milano</p>
-    <p>© 2025 Mille Edicola — Tutti i diritti riservati</p>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>Mille Edicola Srl — Via Giuseppe Ripamonti 2, Milano</div>
+      <div>© 2025 Mille Edicola — Tutti i diritti riservati</div>
+    </div>
   </footer>
 
   <script>
-    // Intersection Observer for fade-in
-    const faders = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    const slider = document.querySelector('.gallery-wrap');
 
-    faders.forEach(el => observer.observe(el));
+    if (slider) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      slider.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+    }
   </script>
 
 </body>
